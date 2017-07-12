@@ -1,0 +1,17 @@
+.good {
+  flex: 1;
+  margin: 20px;
+  border: 1px solid coral;
+  border-radius: 3px;
+  padding: 10px;
+  background-color: #ccc; 
+}
+
+.good img {
+  width: 100px;
+  height: 50px;
+}
+
+.good .good-name{
+  font-size: 18px;
+}

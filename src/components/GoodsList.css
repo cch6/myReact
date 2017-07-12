@@ -1,0 +1,11 @@
+.good-list>button{
+  height: 20px;
+}
+
+.good-list .list{
+  margin-top: 20px; 
+  display: flex;
+  height: 200px;
+  border: 1px solid rebeccapurple;
+  border-radius: 3px;
+}
