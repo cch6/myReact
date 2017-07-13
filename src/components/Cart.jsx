@@ -7,21 +7,47 @@ import CartGood from './CartGood'
 
 import './GoodsList.css'
 
-class GoodsList extends Component {
+class CartList extends Component {
   static propTypes = {
-    cart: PropTypes.array
+    goodsList: PropTypes.array,
+    cart: PropTypes.array,
+    actions: PropTypes.object
+  }
+  add = (id) => {
+    let addGood
+    this.props.goodsList.map((good) => {
+      if (good.id === id) {
+        addGood = good
+      }
+    })
+    if (addGood.left > 0) {
+      this.props.actions.goodsListSub(id)
+      this.props.actions.cartListAdd(id)
+    }
+  }
+
+  sub = (id) => {
+    let subGood
+    this.props.actions.goodsListAdd(id)
+    this.props.actions.cartListSub(id)
+    this.props.cart.map((good) => {
+      if (good.id === id) {
+        subGood = good
+      }
+    })
+    if (subGood.num === 0) {
+      this.props.actions.cartListDel(id)
+    }
   }
 
   render () {
-    let goodsList = this.props.cart.map((good) => (
-      <CartGood good={good} key={good.id} />
-    ))
-
     return (
       <div className='good-list'>
         <p>购物车</p>
         <div className='list'>
-          {goodsList}
+          {this.props.cart.map((good) => (
+            <CartGood good={good} add={this.add} sub={this.sub} key={good.id} />
+          ))}
         </div>
       </div>
     )
@@ -29,8 +55,8 @@ class GoodsList extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
+    goodsList: state.goodsList,
     cart: state.cart
   }
 }
@@ -42,4 +68,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GoodsList)
+)(CartList)

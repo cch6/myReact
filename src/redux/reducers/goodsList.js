@@ -7,13 +7,12 @@ export default function goodsList (state = initialState, action) {
     case types.GETGOODSLIST:
       return [...action.goodsList]
     case types.GOODSLISTADD:
-      let newState = state.map((good) => {
+      return state.map((good) => {
         if (good.id === action.id) {
           good.left += 1
         }
         return good
       })
-      return newState
     case types.GOODSLISTSUB:
       return state.map((good) => {
         if (good.id === action.id) {

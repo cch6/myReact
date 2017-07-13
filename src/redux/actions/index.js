@@ -23,3 +23,18 @@ export const addToCart = (good) => ({
   type: types.ADDTOCART,
   good
 })
+
+export const cartListAdd = (id) => ({
+  type: types.CARTLISTADD,
+  id
+})
+
+export const cartListSub = (id) => ({
+  type: types.CARTLISTSUB,
+  id
+})
+
+export const cartListDel = (id) => ({
+  type: types.CARTLISTDEL,
+  id
+})

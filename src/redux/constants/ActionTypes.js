@@ -10,4 +10,8 @@ export const ADDTOCART = 'ADDTOCART'
 
 export const CARTADD = 'CARTADD'
 
-export const CARTSUB = 'CARTSUB'
+export const CARTLISTADD = 'CARTLISTADD'
+
+export const CARTLISTSUB = 'CARTLISTSUB'
+
+export const CARTLISTDEL = 'CARTLISTDEL'

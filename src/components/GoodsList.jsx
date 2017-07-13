@@ -16,15 +16,23 @@ class GoodsList extends Component {
   handleClick = () => {
     this.props.actions.getGoodsList(goodList)
   }
+  addToCartHandle = (good) => {
+    if (good.left > 0) {
+      this.props.actions.goodsListSub(good.id)
+      this.props.actions.addToCart(good)
+    }
+  }
   render () {
+    let goodsList = this.props.goodsList.map((good) => (
+      <Good good={good} key={good.id} addToCart={this.addToCartHandle} />
+    ))
+
     return (
       <div className='good-list'>
         <button onClick={this.handleClick}>get goodslist</button>
         <p>商品列表</p>
         <div className='list'>
-          {this.props.goodsList.map((good, index) => (
-            <Good goodIndex={index} key={good.id} />
-          ))}
+          {goodsList}
         </div>
       </div>
     )
