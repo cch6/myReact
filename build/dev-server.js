@@ -22,6 +22,41 @@ const autoOpenBrowser = !!config.dev.autoOpenBrowser;
 const proxyTable = config.dev.proxyTable;
 
 const app = express();
+
+/******************mock*****************************/
+
+var apiRoutes = express.Router()
+
+apiRoutes.get('/getGoods', function (req, res) {
+    setTimeout(function(){
+        res.json([
+        {
+            id: 1,
+            image: '/static/logo.svg',
+            name: 'good-1',
+            left: 6,
+            price: 5
+        }, {
+            id: 2,
+            image: '/static/logo.svg',
+            name: 'good-2',
+            left: 5,
+            price: 2
+        }, {
+            id: 3,
+            image: '/static/logo.svg',
+            name: 'good-3',
+            left: 8,
+            price: 3
+        }
+    ])
+    },1000)
+})
+
+app.use('/api', apiRoutes)
+
+/**********************************************/
+
 const compiler = webpack(webpackConfig);
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
